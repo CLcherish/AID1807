@@ -1,0 +1,54 @@
+1、MySQL中数据类型有：数值、字符、枚举、日期时间
+
+2、关系型数据库的核心内容是 关系 即 二维表
+
+3、简述客户端把数据存储到数据库服务器上的过程
+连接到数据服务器 mysql -uroot -p123456
+选择一个库 use 库名
+创建表/修改表 update 表名 ...
+断开与数据库连接 exit; | quit; | \q
+
+4、char和varchar的区别,各自的特点
+char（定长）
+
+    取值范围：1-255
+
+varchar（变长）
+
+    取值范围：1-65535
+    varchar：节省存储空间，性能低
+    char：浪费存储空间，性能高
+
+5、操作
+
+  1、创建一个学校的库 school
+create database school;
+
+  2、在库school中创建表students,字符集utf8
+
+    字段如下：
+
+    id int 显示宽度为3,位数不够用0填充
+
+    姓名、年龄(不能为负数)、性别(单选)、成绩(浮点)、爱好(多选)
+use school;
+create table student(
+id int,
+name char(20),
+age tinyint unsigned,
+sex char(15),
+score float(5,2)
+)character set utf8
+  3、查看表结构
+desc student;
+  4、在表中任意插入3条完整记录,并查询显示
+insert into students values (1,'zzz',18,'男',98.88),(2,'xxx',17,'女',87),(3,'ccc',21,'男',67.65);
+  5、在表中id、姓名、成绩三个字段插入3条记录,并查询显示
+insert into students (name,score) values ('vvv',47),('bbb',57.5);
+  6、查看所有学生的姓名和成绩
+select name,score from students;
+  7、查看成绩及格的学生的姓名和成绩
+select name,score from students where age>=60
+  8、更改配置文件,把默认字符集改为 utf8
+
+  9、重启MySQL服务,并建库验证
